@@ -5,6 +5,13 @@ exports.register = async (req, res, next) => {
     try{
         const data = req.body;
 
+        const adminrole = await User.findOne({role:"admin"});
+        if(data.role === "admin" && adminrole){
+            const error = new Error("Admin user already exists");
+            error.statusCode = 400;
+            return next(error);
+        }
+
         const existingUser = await User.findOne({email:data.email.toLowerCase().trim()});
         if(existingUser){
             const error = new Error("Email is already registered");
@@ -93,6 +100,23 @@ exports.updatePassword = async (req, res, next) => {
         await user.save();
 
         res.status(200).json({success: true, message: 'Password updated successfully'});
+    }
+    catch(err){
+        next(err);
+    }
+};
+
+exports.getalluser = async (req, res, next) => {
+    try{
+        const user = await User.find()
+        .select("fullName email trade enrollmentNo");
+        
+        if(user.length === 0){
+            const error = new Error("User not found");
+            error.statusCode = 404;
+            return next(error);
+        }
+        res.status(200).json({success: true, count: user.length, user});
     }
     catch(err){
         next(err);
