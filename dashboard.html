@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | Mahila ITI Surendranagar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">ITI</div>
+      <div class="nav-title">
+        <h1>Mahila ITI Surendranagar</h1>
+        <span>Student Portal</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="trades.html">Trades</a></li>
+      <li><a href="#" onclick="logoutUser()" style="color:#dc3545;font-weight:700;">Logout 🚪</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="dashboard-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="sidebarAvatar">S</div>
+        <h4 id="sidebarName">Loading...</h4>
+        <span id="sidebarTrade">Trade</span>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="#" class="active" onclick="showSection('dashboard', this)">
+          <span class="menu-icon">🏠</span> Dashboard
+        </a>
+        <a href="#" onclick="showSection('profile', this)">
+          <span class="menu-icon">👤</span> My Profile
+        </a>
+        <a href="#" onclick="showSection('notices', this)">
+          <span class="menu-icon">📢</span> Notices
+        </a>
+        <a href="#" onclick="showSection('contact', this)">
+          <span class="menu-icon">📞</span> Contact Office
+        </a>
+        <a href="#" onclick="showSection('password', this)">
+          <span class="menu-icon">🔒</span> Change Password
+        </a>
+        <a href="#" id="adminMenu" style="display:none;" onclick="showSection('admin', this)">
+          <span class="menu-icon">🛠️</span> Admin Panel
+        </a>
+        <hr class="menu-divider" />
+        <a href="index.html"><span class="menu-icon">🌐</span> Back to Website</a>
+        <a href="#" onclick="logoutUser()" style="color:#ff7b7b;">
+          <span class="menu-icon">🚪</span> Logout
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-main">
+
+      <!-- ===== DASHBOARD ===== -->
+      <div id="sec-dashboard">
+        <div class="dashboard-header">
+          <h2>Welcome back, <span id="welcomeName" style="color:var(--secondary);">Student</span>! 👋</h2>
+          <p>Mahila ITI Surendranagar &mdash; Student Dashboard</p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-icon icon-blue">📚</div>
+            <div class="stat-card-info"><h4>My Trade</h4><strong id="dashTrade" style="font-size:0.9rem;">—</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon icon-gold">✅</div>
+            <div class="stat-card-info"><h4>Attendance</h4><strong>85%</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon icon-green">📝</div>
+            <div class="stat-card-info"><h4>Semester</h4><strong>1st Sem</strong></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon icon-red">🏆</div>
+            <div class="stat-card-info"><h4>Result</h4><strong style="font-size:0.9rem;">Pending</strong></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h3>📋 My Profile Summary</h3>
+          <div class="profile-info-grid">
+            <div class="profile-info-item"><label>Full Name</label><span id="profileName">—</span></div>
+            <div class="profile-info-item"><label>Email Address</label><span id="profileEmail">—</span></div>
+            <div class="profile-info-item" id="tradeBox"><label>Trade / Course</label><span id="profileTrade">—</span></div>
+            <div class="profile-info-item" id="enrollBox"><label>Enrollment No.</label><span id="profileEnroll">—</span></div>
+            <div class="profile-info-item"><label>Role</label><span id="profileRole">Student</span></div>
+            <div class="profile-info-item"><label>Institute</label><span>Mahila ITI Surendranagar</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h3>📢 Recent Notices</h3>
+          <div id="dashRecentNotices"></div>
+          <div style="text-align:center; margin-top:1rem;">
+            <a href="#" onclick="showSection('notices', null)" style="color:var(--primary); font-size:0.88rem; font-weight:700;">View All Notices &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MY PROFILE ===== -->
+      <div id="sec-profile" style="display:none;">
+        <div class="dashboard-header">
+          <h2>My Profile</h2>
+          <p>Your student account information</p>
+        </div>
+        <div class="dash-card">
+          <h3>👤 Personal Information</h3>
+          <div class="profile-info-grid">
+            <div class="profile-info-item"><label>Full Name</label><span id="p2Name">—</span></div>
+            <div class="profile-info-item"><label>Email Address</label><span id="p2Email">—</span></div>
+            <div class="profile-info-item" id="tradeBox2"><label>Trade / Course</label><span id="p2Trade">—</span></div>
+            <div class="profile-info-item" id="enrollBox2"><label>Enrollment No.</label><span id="p2Enroll">—</span></div>
+            <div class="profile-info-item"><label>Role</label><span>Student</span></div>
+            <div class="profile-info-item"><label>Institute</label><span>Mahila ITI Surendranagar</span></div>
+            <div class="profile-info-item"><label>Board</label><span>NCVT</span></div>
+            <div class="profile-info-item"><label>Session</label><span id="sessionYear">—</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h3>📊 Academic Status</h3>
+          <div class="profile-info-grid">
+            <div class="profile-info-item"><label>Semester</label><span>1st Semester</span></div>
+            <div class="profile-info-item"><label>Attendance</label><span style="color:var(--success);font-weight:700;">85% ✅</span></div>
+            <div class="profile-info-item"><label>Theory Exam</label><span id="theoryDate">—</span></div>
+            <div class="profile-info-item"><label>Practical Exam</label><span id="practicalDate">—</span></div>
+            <div class="profile-info-item"><label>Result</label><span style="color:var(--secondary);font-weight:700;">Awaited 🕐</span></div>
+            <div class="profile-info-item"><label>Status</label><span style="color:var(--success);font-weight:700;">Active ✅</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NOTICES ===== -->
+      <div id="sec-notices" style="display:none;">
+        <div class="dashboard-header">
+          <h2>Notice Board 📢</h2>
+          <p>All important notices from the institute</p>
+        </div>
+        <div class="dash-card">
+          <h3>📌 Pinned Notices</h3>
+          <div id="pinnedNotices"></div>
+        </div>
+        <div class="dash-card">
+          <h3>📋 All Notices</h3>
+          <div id="allNotices"></div>
+        </div>
+      </div>
+
+      <!-- ===== CONTACT OFFICE ===== -->
+      <div id="sec-contact" style="display:none;">
+        <div class="dashboard-header">
+          <h2>Contact Office 📞</h2>
+          <p>Reach out to the institute office for any queries</p>
+        </div>
+        <div class="dash-card">
+          <h3>📍 Office Contact Details</h3>
+          <div class="contact-office-grid">
+            <div class="co-item">
+              <div class="co-icon">📍</div>
+              <div><h4>Address</h4><p>Government Mahila ITI, Surendranagar, Gujarat &mdash; 363001</p></div>
+            </div>
+            <div class="co-item">
+              <div class="co-icon">📞</div>
+              <div><h4>Office Phone</h4><p>+91 02752-784512<br><small>Mon–Sat: 9 AM – 5 PM</small></p></div>
+            </div>
+            <div class="co-item">
+              <div class="co-icon">📧</div>
+              <div><h4>Email</h4><p>mahilaiti.surendranagar@gujarat.gov.in</p></div>
+            </div>
+            <div class="co-item">
+              <div class="co-icon">🏫</div>
+              <div><h4>Principal Office</h4><p>Room No. 101, Ground Floor<br><small>Mon–Fri: 10 AM – 4 PM</small></p></div>
+            </div>
+            <div class="co-item">
+              <div class="co-icon">📝</div>
+              <div><h4>Admission Office</h4><p>Room No. 102, Ground Floor<br><small>Mon–Sat: 9 AM – 1 PM</small></p></div>
+            </div>
+            <div class="co-item">
+              <div class="co-icon">🚨</div>
+              <div><h4>Emergency</h4><p>+91 9800441297<br><small>For urgent matters only</small></p></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h3>✉️ Send Message to Office</h3>
+          <div class="alert alert-error" id="dashContactAlert" style="display:none;"></div>
+          <div class="alert alert-success" id="dashContactSuccess" style="display:none;"></div>
+          <div class="form-group"><label>Subject</label><input type="text" id="dSubject" placeholder="e.g. Attendance issue, Certificate request..." /></div>
+          <div class="form-group"><label>Department</label>
+            <select id="dDept">
+              <option value="">-- Select Department --</option>
+              <option>Principal Office</option>
+              <option>Admission Office</option>
+              <option>COPA Department</option>
+              <option>Sewing Technology Department</option>
+              <option>Hair &amp; Skin Care Department</option>
+              <option>Dress Making Department</option>
+              <option>Food Production Department</option>
+              <option>Embroidery Department</option>
+              <option>Examination Cell</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Your Message</label><textarea id="dMessage" placeholder="Write your message here..." style="height:120px;"></textarea></div>
+          <button class="btn btn-primary" onclick="sendDashMessage()">Send Message to Office 📨</button>
+        </div>
+        <div class="dash-card">
+          <h3>🗺️ How to Reach Us</h3>
+          <div style="background:var(--light); border-radius:var(--radius-sm); padding:1.25rem; font-size:0.9rem; color:var(--gray); line-height:1.8;">
+            <strong style="color:var(--primary);">By Road:</strong> Located in the heart of Surendranagar city. Near bus stand, accessible by auto-rickshaw and local bus.<br><br>
+            <strong style="color:var(--primary);">By Train:</strong> Surendranagar Railway Station is nearby. Take auto-rickshaw from station to Mahila ITI.<br><br>
+            <strong style="color:var(--primary);">Landmark:</strong> Near Surendranagar District Collectorate, Gujarat.
+          </div>
+        </div>
+      </div>
+
+      
+      <!-- ===== ADMIN PANEL ===== -->
+      <div id="sec-admin" style="display:none;">
+        <div class="dashboard-header">
+          <h2>Admin Panel 🛠️</h2>
+          <p>Manage and export all registered student data</p>
+        </div>
+
+        <!-- Admin Toolbar -->
+        <div class="dash-card" style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:0.75rem; flex:1; min-width:200px;">
+            <span style="font-size:1.1rem;">🔍</span>
+            <input type="text" id="adminSearchInput" placeholder="Search by name, email, trade or enrollment..." oninput="filterAdminTable()" style="flex:1; padding:10px 14px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem;" />
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <span id="adminUserCount" style="font-size:0.9rem; color:var(--gray); font-weight:600;">Total: 0 students</span>
+            <button class="btn btn-primary" onclick="exportToExcel()" style="display:flex; align-items:center; gap:0.5rem; padding:10px 20px;">
+              📥 Export to Excel
+            </button>
+          </div>
+        </div>
+
+        <!-- Student Records Table -->
+        <div class="dash-card">
+          <h3>📋 Student Records</h3>
+          <div style="overflow-x:auto;">
+            <table id="adminTable" style="width:100%; border-collapse:collapse; margin-top:1rem;">
+              <thead>
+                <tr style="background:#1e40af; color:white;">
+                  <th style="padding:12px 16px; border:1px solid #ddd; text-align:left;">#</th>
+                  <th style="padding:12px 16px; border:1px solid #ddd; text-align:left;">Full Name</th>
+                  <th style="padding:12px 16px; border:1px solid #ddd; text-align:left;">Email</th>
+                  <th style="padding:12px 16px; border:1px solid #ddd; text-align:left;">Trade</th>
+                  <th style="padding:12px 16px; border:1px solid #ddd; text-align:left;">Enrollment No</th>
+                </tr>
+              </thead>
+              <tbody id="adminUsersTable">
+                <tr><td colspan="5" style="padding:20px; text-align:center; color:var(--gray);">Loading student data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CHANGE PASSWORD ===== -->
+      <div id="sec-password" style="display:none;">
+        <div class="dashboard-header">
+          <h2>Change Password 🔒</h2>
+          <p>Update your account password securely</p>
+        </div>
+        <div class="dash-card" style="max-width:480px;">
+          <h3>🔑 Update Password</h3>
+          <div class="alert alert-error" id="pwdAlert" style="display:none;"></div>
+          <div class="alert alert-success" id="pwdSuccess" style="display:none;"></div>
+          <div class="form-group">
+            <label>Current Password *</label>
+            <input type="password" id="currentPassword" placeholder="Enter current password" />
+          </div>
+          <div class="form-group">
+            <label>New Password *</label>
+            <input type="password" id="newPassword" placeholder="Enter new password (min 6 chars)" />
+          </div>
+          <div class="form-group">
+            <label>Confirm New Password *</label>
+            <input type="password" id="confirmNewPassword" placeholder="Repeat new password" />
+          </div>
+          <button class="btn btn-primary" onclick="updatePassword()">Update Password 🔒</button>
+          <p style="font-size:0.82rem; color:var(--gray); margin-top:1rem;">
+            ⚠️ After updating, you will remain logged in with the new password.
+          </p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // ---- Dynamic Year Variables ----
+    const YEAR  = new Date().getFullYear();   // 2026
+    const PREV  = YEAR - 1;                   // 2025
+    const PREV2 = YEAR - 2;                   // 2024
+    const NEXT  = YEAR + 1;                   // 2027
+
+    // ---- Notice Data (all years auto-calculated) ----
+    const PINNED = [
+      {
+        month: "JUN", year: YEAR,
+        text: `🔥 Admission Open for ${YEAR}-${String(NEXT).slice(2)} Batch — Limited seats available. Apply before 30th June ${YEAR}`,
+        sub: `Admission Notice • All Trades • Urgent`,
+        color: "var(--secondary)"
+      },
+      {
+        month: "MAY", year: YEAR,
+        text: `⚠️ Annual Theory Examination starts 15th June ${YEAR} — Hall tickets available at office from 1st June`,
+        sub: `Examination Notice • All Students • Important`,
+        color: "#dc3545"
+      }
+    ];
+
+    const ALL_NOTICES = [
+      {
+        month: "APR", year: YEAR,
+        text: `Practical Exam for COPA Trade — Venue: Computer Lab, Block A • Time: 10:00 AM sharp`,
+        sub: `Practical Exam • COPA Students`
+      },
+      {
+        month: "MAR", year: YEAR,
+        text: `District Level Skill Competition ${YEAR} — Register at office before 15th March. Represent our ITI!`,
+        sub: `Event Notice • All Trades`
+      },
+      {
+        month: "FEB", year: YEAR,
+        text: `Scholarship Applications Open for SC/ST/OBC Students — Submit form at office with required documents`,
+        sub: `Scholarship Notice • Eligible Students`
+      },
+      {
+        month: "JAN", year: YEAR,
+        text: `New Lab Equipment Installed in COPA and Sewing Trades — Practical sessions updated accordingly`,
+        sub: `Infrastructure Notice • COPA & Sewing Students`
+      },
+      {
+        month: "DEC", year: PREV,
+        text: `Winter Vacation: 25th December to 1st January — Institute reopens 2nd January ${YEAR}`,
+        sub: `Holiday Notice • All Students`
+      }
+    ];
+
+    // ---- Render a notice item ----
+    function renderNotice(n, pinned = false) {
+      const bg = pinned ? (n.color || "var(--primary)") : "var(--primary)";
+      const borderStyle = pinned ? `style="border-left-color:${n.color};"` : "";
+      return `
+        <div class="notice-item-dash" ${borderStyle}>
+          <div class="nd-date" style="background:${bg};">${n.month}<br>${n.year}</div>
+          <div>
+            <div class="nd-text">${n.text}</div>
+            <div class="nd-sub">${n.sub}</div>
+          </div>
+        </div>`;
+    }
+
+    // ---- Populate all notice sections ----
+    function renderAllNotices() {
+      const pinEl   = document.getElementById("pinnedNotices");
+      const allEl   = document.getElementById("allNotices");
+      const dashEl  = document.getElementById("dashRecentNotices");
+      if (pinEl)  pinEl.innerHTML  = PINNED.map(n => renderNotice(n, true)).join("");
+      if (allEl)  allEl.innerHTML  = ALL_NOTICES.map(n => renderNotice(n, false)).join("");
+      if (dashEl) dashEl.innerHTML = ALL_NOTICES.slice(0, 3).map(n => renderNotice(n, false)).join("");
+    }
+
+    // ---- Load user from localStorage and populate page ----
+    document.addEventListener("DOMContentLoaded", () => {
+      const user  = JSON.parse(localStorage.getItem("iti_user"));
+      const token = localStorage.getItem("iti_token");
+
+      if (!user || !token) {
+        alert("Please login first!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const firstName = user.fullName.split(" ")[0];
+      const initials  = user.fullName.charAt(0).toUpperCase();
+      const trade     = user.trade     || "N/A";
+      const enroll    = user.enrollmentNo || "Not Assigned";
+      const session   = `${YEAR} - ${NEXT}`;
+
+      // Sidebar
+      document.getElementById("sidebarAvatar").textContent = initials;
+      document.getElementById("sidebarName").textContent   = user.fullName;
+      document.getElementById("sidebarTrade").textContent  = trade;
+
+      // Dashboard section
+      document.getElementById("welcomeName").textContent  = firstName;
+      document.getElementById("dashTrade").textContent    = trade;
+      document.getElementById("profileName").textContent  = user.fullName;
+      document.getElementById("profileEmail").textContent = user.email;
+      document.getElementById("profileTrade").textContent = trade;
+      document.getElementById("profileEnroll").textContent = enroll;
+      document.getElementById("profileRole").textContent  = user.role || "Student";
+
+      // Profile section
+      document.getElementById("p2Name").textContent   = user.fullName;
+      document.getElementById("p2Email").textContent  = user.email;
+      document.getElementById("p2Trade").textContent  = trade;
+      document.getElementById("p2Enroll").textContent = enroll;
+      document.getElementById("sessionYear").textContent   = session;
+      document.getElementById("theoryDate").textContent    = `June ${YEAR} (Scheduled)`;
+      document.getElementById("practicalDate").textContent = `May ${YEAR} (Scheduled)`;
+
+      // Render notices with dynamic years
+      renderAllNotices();
+
+      if(user.role === "admin") {
+        const adminMenu = document.getElementById("adminMenu");
+        if(adminMenu) adminMenu.style.display = "block";
+
+        document.getElementById("tradeBox").style.display = "none";
+        document.getElementById("enrollBox").style.display = "none";
+        document.getElementById("tradeBox2").style.display = "none";
+        document.getElementById("enrollBox2").style.display = "none";
+
+        fetch("https://iti-student-management-backend.onrender.com/user/getalluser", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        })
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.getElementById("adminUsersTable");
+
+          if(!data.users || data.users.length === 0){
+            tbody.innerHTML = `<tr><td colspan="5" style="padding:12px;text-align:center;">No users found</td></tr>`;
+            return;
+          }
+
+          // Store globally for search/export
+          window._adminUsers = data.users;
+          const countEl = document.getElementById('adminUserCount');
+          if(countEl) countEl.textContent = `Total: ${data.users.length} students`;
+
+          tbody.innerHTML = data.users.map((u, i) => `
+            <tr>
+              <td style="padding:12px;border:1px solid #ddd;">${i + 1}</td>
+              <td style="padding:12px;border:1px solid #ddd;">${u.fullName}</td>
+              <td style="padding:12px;border:1px solid #ddd;">${u.email}</td>
+              <td style="padding:12px;border:1px solid #ddd;">${u.trade || '-'}</td>
+              <td style="padding:12px;border:1px solid #ddd;">${u.enrollmentNo || '-'}</td>
+            </tr>
+          `).join("");
+        })
+      }
+    });
+
+    // ---- Section switcher ----
+    function showSection(name, el) {
+      ["dashboard","profile","notices","contact","password","admin"].forEach(s => {
+        const sec = document.getElementById("sec-" + s);
+        if (sec) sec.style.display = "none";
+      });
+      const target = document.getElementById("sec-" + name);
+      if (target) target.style.display = "block";
+      document.querySelectorAll(".sidebar-menu a").forEach(a => a.classList.remove("active"));
+      if (el) el.classList.add("active");
+    }
+
+    // ---- Office message ----
+    function sendDashMessage() {
+      const subject = document.getElementById("dSubject").value.trim();
+      const dept    = document.getElementById("dDept").value;
+      const message = document.getElementById("dMessage").value.trim();
+      const errEl = document.getElementById("dashContactAlert");
+      const sucEl = document.getElementById("dashContactSuccess");
+
+      if (!subject || !dept || !message) {
+        errEl.textContent = "⚠️ Please fill all fields before sending.";
+        errEl.style.display = "block";
+        sucEl.style.display = "none";
+        setTimeout(() => { errEl.style.display = "none"; }, 4000);
+        return;
+      }
+      errEl.style.display = "none";
+      sucEl.textContent = `✅ Your message has been sent to ${dept}. They will respond within 2 working days.`;
+      sucEl.style.display = "block";
+      document.getElementById("dSubject").value  = "";
+      document.getElementById("dDept").value     = "";
+      document.getElementById("dMessage").value  = "";
+      setTimeout(() => { sucEl.style.display = "none"; }, 5000);
+    }
+  </script>
+</body>
+</html>
