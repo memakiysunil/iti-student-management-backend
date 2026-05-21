@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Trades | Mahila ITI Surendranagar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .trade-detail-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .trade-detail-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .trade-card-banner {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .trade-card-body { padding: 1.75rem; flex: 1; }
+    .trade-card-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .trade-card-body p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    .trade-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .trade-detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.83rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .trade-detail-row:last-child { border: none; }
+    .trade-detail-row span:first-child { color: var(--gray); font-weight: 600; }
+    .trade-detail-row span:last-child { color: var(--primary); font-weight: 700; }
+    .trades-intro {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-tab {
+      padding: 0.45rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--border);
+      background: white;
+      color: var(--gray);
+      transition: var(--transition);
+    }
+    .filter-tab.active, .filter-tab:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+    .bg-blue { background: linear-gradient(135deg, #1A3A6B20, #2a529820); }
+    .bg-pink { background: linear-gradient(135deg, #ff9a9e20, #fecfef20); }
+    .bg-green { background: linear-gradient(135deg, #a8edea20, #fed6e320); }
+    .bg-yellow { background: linear-gradient(135deg, #f6d36520, #fda08520); }
+    .bg-purple { background: linear-gradient(135deg, #cd9cf220, #f6f3ff20); }
+    .bg-orange { background: linear-gradient(135deg, #ffecd220, #fcb69f20); }
+    .bg-teal { background: linear-gradient(135deg, #89f7fe20, #66a6ff20); }
+    .scope-box {
+      background: var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .scope-box strong { display: block; margin-bottom: 0.35rem; font-size: 0.78rem; color: var(--gray); }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">ITI</div>
+      <div class="nav-title">
+        <h1>Mahila ITI Surendranagar</h1>
+        <span>Government Industrial Training Institute</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="trades.html" class="active">Trades</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="login.html" class="btn-nav-login">Login / Sign Up</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <div class="page-hero">
+    <h1>Our Trades & Courses</h1>
+    <p>NCVT Affiliated Vocational Training Programs | Mahila ITI Surendranagar</p>
+  </div>
+
+  <!-- ========== TRADES SECTION ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="trades-intro">
+        <p style="color:var(--gray); font-size:1rem; line-height:1.8;">
+          All our courses are affiliated to <strong>NCVT (National Council of Vocational Training)</strong>, 
+          providing nationally recognized certificates. Duration is typically 1 year with both 
+          theory and practical training.
+        </p>
+      </div>
+
+      <div class="filter-tabs">
+        <span class="filter-tab active">All Trades</span>
+        <span class="filter-tab">1 Year</span>
+        <span class="filter-tab">NCVT</span>
+      </div>
+
+      <div class="trades-grid">
+
+        <!-- COPA -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-blue">💻</div>
+          <div class="trade-card-body">
+            <h3>COPA</h3>
+            <p>Computer Operator & Programming Assistant. Comprehensive training in computer operations, MS Office suite, internet usage, basic programming and data entry skills.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>24 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>10th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Data Entry Operator, Office Assistant, Computer Operator, DTP Operator
+            </div>
+          </div>
+        </div>
+
+        <!-- Sewing Technology -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-pink">🧵</div>
+          <div class="trade-card-body">
+            <h3>Sewing Technology</h3>
+            <p>Professional garment stitching, sewing machine operation, pattern making, fabric knowledge, and tailoring skills for self-employment and industry.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>20 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>8th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Self-employed Tailor, Garment Factory, Boutique Owner, Fashion Entrepreneur
+            </div>
+          </div>
+        </div>
+
+        <!-- Hair & Skin Care -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-green">💇</div>
+          <div class="trade-card-body">
+            <h3>Hair &amp; Skin Care</h3>
+            <p>Complete beauty training covering hair styling, cutting, coloring, skincare treatments, facials, makeup application and salon management.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>16 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>8th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Beauty Salon Owner, Beautician, Makeup Artist, Hotel Industry
+            </div>
+          </div>
+        </div>
+
+        <!-- Dress Making -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-yellow">👗</div>
+          <div class="trade-card-body">
+            <h3>Dress Making</h3>
+            <p>Fashion design fundamentals, fabric selection, cutting techniques, garment construction, finishing and basic fashion illustration.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>20 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>8th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Fashion Designer, Boutique, Textile Industry, Self-employment
+            </div>
+          </div>
+        </div>
+
+        <!-- Food Production -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-orange">🍰</div>
+          <div class="trade-card-body">
+            <h3>Food Production</h3>
+            <p>Bakery and confectionery, food processing, packaging, hygiene standards and catering skills for food industry and entrepreneurship.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>16 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>10th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Bakery Owner, Catering Business, Hotel Industry, Food Startup
+            </div>
+          </div>
+        </div>
+
+        <!-- Embroidery -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-purple">🧶</div>
+          <div class="trade-card-body">
+            <h3>Embroidery &amp; Needle Work</h3>
+            <p>Traditional and contemporary embroidery styles, needle work, zari work, mirror work, and handicraft techniques for artisan career.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>20 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>8th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Handicraft Artist, Textile Industry, Self-employment, Export Industry
+            </div>
+          </div>
+        </div>
+
+        <!-- Stenography -->
+        <div class="trade-detail-card">
+          <div class="trade-card-banner bg-teal">📝</div>
+          <div class="trade-card-body">
+            <h3>Stenography</h3>
+            <p>Shorthand writing (English/Hindi), typewriting, transcription, and office communication skills for government and private sector jobs.</p>
+            <div class="trade-details-list">
+              <div class="trade-detail-row"><span>Duration</span><span>1 Year (2 Semesters)</span></div>
+              <div class="trade-detail-row"><span>Seats</span><span>16 Students</span></div>
+              <div class="trade-detail-row"><span>Certificate</span><span>NCVT NTC</span></div>
+              <div class="trade-detail-row"><span>Eligibility</span><span>10th Pass</span></div>
+            </div>
+            <div class="scope-box">
+              <strong>Career Scope</strong>
+              Government Stenographer, Court Reporter, Office Secretary, PA
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end trades-grid -->
+
+      <!-- CTA Box -->
+      <div style="text-align:center; margin-top:3rem; background:var(--primary); border-radius:20px; padding:3rem 2rem;">
+        <h2 style="font-family:var(--font-heading); color:white; font-size:1.8rem; margin-bottom:0.75rem;">
+          Ready to Enroll?
+        </h2>
+        <p style="color:rgba(255,255,255,0.75); margin-bottom:1.75rem;">
+          Registration is open for the 2025-26 batch. Limited seats available in each trade.
+        </p>
+        <a href="signup.html" class="btn btn-secondary btn-lg">Apply Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-brand">
+          <div class="footer-logo">ITI</div>
+          <div><h3>Mahila ITI Surendranagar</h3></div>
+        </div>
+        <p>Government Mahila Industrial Training Institute, Surendranagar. Empowering women with vocational skills.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="trades.html">Trades</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Student Portal</h4>
+        <a href="login.html">Student Login</a>
+        <a href="signup.html">New Registration</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="#">Surendranagar, Gujarat</a>
+        <a href="#">+91 02752-XXXXXX</a>
+        <a href="#">mahilaiti@gujarat.gov.in</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Government Mahila ITI Surendranagar | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

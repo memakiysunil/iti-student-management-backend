@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration | Mahila ITI Surendranagar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="auth-page" style="padding: 2rem 1rem;">
+    <div class="auth-card" style="max-width: 560px;">
+
+      <!-- Logo -->
+      <div class="auth-logo">
+        <div class="logo-circle">ITI</div>
+        <h2>Mahila ITI Surendranagar</h2>
+        <p>Government Industrial Training Institute</p>
+      </div>
+
+      <h3>Student Registration</h3>
+      <p class="auth-desc">Create your account to access the student portal</p>
+
+      <!-- Alert Messages -->
+      <div class="alert alert-error" id="signupAlert"></div>
+      <div class="alert alert-success" id="signupSuccess"></div>
+
+      <!-- Signup Form -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="signupName" placeholder="Enter full name" />
+        </div>
+        <div class="form-group">
+          <label>Enrollment No.</label>
+          <input type="text" id="signupEnroll" placeholder="e.g. ITI/2025/001" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address *</label>
+        <input type="email" id="signupEmail" placeholder="Enter email address" />
+      </div>
+
+      <div class="form-group">
+        <label>Select Trade *</label>
+        <select id="signupTrade">
+          <option value="">-- Select Your Trade --</option>
+          <option value="COPA">COPA (Computer Operator & Programming Assistant)</option>
+          <option value="Sewing Technology">Sewing Technology</option>
+          <option value="Hair & Skin Care">Hair & Skin Care</option>
+          <option value="Dress Making">Dress Making</option>
+          <option value="Embroidery & Needle Work">Embroidery & Needle Work</option>
+          <option value="Stenography">Stenography</option>
+          <option value="Food Production">Food Production (Bakery)</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" id="signupPassword" placeholder="Min. 6 characters" />
+        </div>
+        <div class="form-group">
+          <label>Confirm Password *</label>
+          <input type="password" id="signupConfirm" placeholder="Repeat password" />
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" style="width:100%;" onclick="registerUser()" id="signupBtn">
+        Create Account
+      </button>
+
+      <div class="auth-footer">
+        Already registered? <a href="login.html">Login Here</a>
+      </div>
+      <div class="auth-footer" style="margin-top:0.5rem;">
+        <a href="index.html" style="color:var(--gray);">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

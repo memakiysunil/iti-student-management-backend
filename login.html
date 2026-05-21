@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Login | Mahila ITI Surendranagar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card">
+
+      <!-- Logo -->
+      <div class="auth-logo">
+        <div class="logo-circle">ITI</div>
+        <h2>Mahila ITI Surendranagar</h2>
+        <p>Government Industrial Training Institute</p>
+      </div>
+
+      <h3>Welcome Back!</h3>
+      <p class="auth-desc">Login to your student portal</p>
+
+      <!-- Alert Message -->
+      <div class="alert alert-error" id="loginAlert"></div>
+      <div class="alert alert-success" id="loginSuccess"></div>
+
+      <!-- Login Form -->
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Enter your email" />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" />
+      </div>
+
+      <div style="text-align:right; margin-bottom:1.25rem;">
+        <a href="#" style="font-size:0.85rem; color:var(--primary); font-weight:600;">Forgot Password?</a>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" onclick="loginUser()" id="loginBtn">
+        Login to Portal
+      </button>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="signup.html">Register Here</a>
+      </div>
+      <div class="auth-footer" style="margin-top:0.5rem;">
+        <a href="index.html" style="color:var(--gray);">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

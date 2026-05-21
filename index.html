@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahila ITI Surendranagar | Government Industrial Training Institute</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">ITI</div>
+      <div class="nav-title">
+        <h1>Mahila ITI Surendranagar</h1>
+        <span>Government Industrial Training Institute</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="trades.html">Trades</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="login.html" class="btn-nav-login" id="navAuthBtn">Login / Sign Up</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">🎓 Gujarat Government Recognized &bull; NCVT Affiliated</div>
+        <h1>Empowering Women<br>Through <span>Skill Education</span></h1>
+        <p class="hero-subtitle">
+          Mahila ITI Surendranagar — quality vocational training for a bright and independent future.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-num">7+</span><span class="stat-label">Trades</span></div>
+          <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Students</span></div>
+          <div class="stat-item"><span class="stat-num">20+</span><span class="stat-label">Years</span></div>
+        </div>
+        <div class="hero-buttons">
+          <a href="signup.html" class="btn btn-secondary btn-lg">Apply Now &rarr;</a>
+          <a href="trades.html" class="btn btn-outline btn-lg">View Trades</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-logo-big">ITI</div>
+        <h3>Mahila ITI Surendranagar</h3>
+        <p>Government of Gujarat &bull; NCVT Affiliated</p>
+        <div class="hero-trades-preview">
+          <div class="trade-chip"><span>💻</span><span>COPA</span></div>
+          <div class="trade-chip"><span>🧵</span><span>Sewing Technology</span></div>
+          <div class="trade-chip"><span>💇</span><span>Hair &amp; Skin Care</span></div>
+          <div class="trade-chip"><span>👗</span><span>Dress Making</span></div>
+          <div class="trade-chip"><span>🍰</span><span>Food Production</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- ========== GALLERY SECTION ========== -->
+  <section class="section" id="gallery" style="background:var(--light);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Campus Gallery</div>
+        <h2>Our Institute &amp; Trades</h2>
+        <p>A glimpse of Government Mahila ITI Surendranagar campus and our trade workshops</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="gallery-tabs" id="galleryTabs">
+        <button class="gallery-tab active" onclick="filterGallery('all', this)">All</button>
+        <button class="gallery-tab" onclick="filterGallery('campus', this)">🏫 Campus</button>
+        <button class="gallery-tab" onclick="filterGallery('copa', this)">💻 COPA</button>
+        <button class="gallery-tab" onclick="filterGallery('sewing', this)">🧵 Sewing</button>
+        <button class="gallery-tab" onclick="filterGallery('hair', this)">💇 Hair &amp; Skin</button>
+        <button class="gallery-tab" onclick="filterGallery('dress', this)">👗 Dress Making</button>
+        <button class="gallery-tab" onclick="filterGallery('food', this)">🍰 Food</button>
+        <button class="gallery-tab" onclick="filterGallery('embroidery', this)">🧶 Embroidery</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+
+        <!-- ===== CAMPUS ===== -->
+        <div class="gallery-item" data-cat="campus" onclick="openLightbox('images/campus1.webp','Mahila ITI Surendranagar — Aerial Campus View')">
+          <img src="images/campus1.webp" alt="Mahila ITI Main Entrance Gate" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🏫 Campus</span>
+            <p>Main Entrance Gate</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="campus" onclick="openLightbox('images/campus2.webp','Mahila ITI Surendranagar — Centre of Excellence')">
+          <img src="images/campus2.webp" alt="ITI Centre of Excellence Gate" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🏫 Campus</span>
+            <p>Centre of Excellence Gate</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="campus" onclick="openLightbox('images/campus3.webp','Government Mahila ITI Surendranagar — Skill Training Activities')">
+          <img src="images/campus3.webp" alt="ITI Main Building" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🏫 Campus</span>
+            <p>ITI Campus View</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="campus" onclick="openLightbox('images/campus4.avif','Government Industrial Training Institute — Campus View')">
+          <img src="images/campus4.avif" alt="ITI Campus View" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🏫 Campus</span>
+            <p>ITI Campus View</p>
+          </div>
+        </div>
+
+        <!-- ===== COPA ===== -->
+        <div class="gallery-item" data-cat="copa" onclick="openLightbox('images/copa-lab.jpg','COPA Trade — Computer Lab with Students')">
+          <img src="images/copa-lab.jpg" alt="COPA Computer Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💻 COPA</span>
+            <p>Computer Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="copa" onclick="openLightbox('images/images.jpg','COPA Trade — Computer Lab with Students')">
+          <img src="images/images.jpg" alt="COPA Computer Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💻 COPA</span>
+            <p>Computer Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="copa" onclick="openLightbox('images/images (3).jpg','COPA Trade — Computer Lab with Students')">
+          <img src="images/images (3).jpg" alt="COPA Computer Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💻 COPA</span>
+            <p>Computer Lab</p>
+          </div>
+        </div>
+
+        <!-- ===== SEWING TECHNOLOGY ===== -->
+        <div class="gallery-item" data-cat="sewing" onclick="openLightbox('images/sewing-class.jpg','Sewing Technology — Students in Practical Class')">
+          <img src="images/sewing-class.jpg" alt="Sewing Technology Class" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧵 Sewing Technology</span>
+            <p>Sewing Technology Class</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="sewing" onclick="openLightbox('images/sewing-lab.jpg','Sewing Technology — Machine Lab')">
+          <img src="images/sewing-lab.jpg" alt="Sewing Machine Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧵 Sewing Technology</span>
+            <p>Sewing Machine Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="sewing" onclick="openLightbox('images/images (5).jpg','Sewing Technology — Machine Lab')">
+          <img src="images/images (5).jpg" alt="Sewing Machine Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧵 Sewing Technology</span>
+            <p>Sewing Machine Lab</p>
+          </div>
+        </div>
+
+        <!-- ===== HAIR & SKIN CARE ===== -->
+        <div class="gallery-item" data-cat="hair" onclick="openLightbox('images/hair-skin.jpg','Hair &amp; Skin Care — Beauty Training Lab')">
+          <img src="images/hair-skin.jpg" alt="Hair and Skin Care Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💇 Hair &amp; Skin Care</span>
+            <p>Beauty Training Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="hair" onclick="openLightbox('images/download (4).jpg','Hair &amp; Skin Care — Beauty Training Lab')">
+          <img src="images/download (4).jpg" alt="Hair and Skin Care Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💇 Hair &amp; Skin Care</span>
+            <p>Beauty Training Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="hair" onclick="openLightbox('images/download 5 .jpg','Hair &amp; Skin Care — Beauty Training Lab')">
+          <img src="images/download 5 .jpg" alt="Hair and Skin Care Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💇 Hair &amp; Skin Care</span>
+            <p>Beauty Training Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="hair" onclick="openLightbox('images/download 6.jpg','Hair &amp; Skin Care — Beauty Training Lab')">
+          <img src="images/download 6.jpg" alt="Hair and Skin Care Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">💇 Hair &amp; Skin Care</span>
+            <p>Beauty Training Lab</p>
+          </div>
+        </div>
+
+        <!-- ===== DRESS MAKING ===== -->
+        <div class="gallery-item" data-cat="dress" onclick="openLightbox('images/dress-making.jpg','Dress Making — Practical Training Session')">
+          <img src="images/dress-making.jpg" alt="Dress Making Class" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">👗 Dress Making</span>
+            <p>Dress Making Class</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="dress" onclick="openLightbox('images/dress-making2.jpg','Dress Making — Garment Stitching Practice')">
+          <img src="images/dress-making2.jpg" alt="Dress Making Practice" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">👗 Dress Making</span>
+            <p>Garment Stitching Practice</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="dress" onclick="openLightbox('images/download (6).jpg','Dress Making — Garment Stitching Practice')">
+          <img src="images/download (6).jpg" alt="Dress Making Practice" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">👗 Dress Making</span>
+            <p>Garment Stitching Practice</p>
+          </div>
+        </div>
+
+        <!-- ===== FOOD PRODUCTION ===== -->
+        <div class="gallery-item" data-cat="food" onclick="openLightbox('images/food-production.jpg','Food Production — Bakery &amp; Food Processing Lab')">
+          <img src="images/food-production.jpg" alt="Food Production Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🍰 Food Production</span>
+            <p>Food Processing Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="food" onclick="openLightbox('images/images (1).jpg','Food Production — Bakery &amp; Food Processing Lab')">
+          <img src="images/images (1).jpg" alt="Food Production Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🍰 Food Production</span>
+            <p>Food Processing Lab</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="food" onclick="openLightbox('images/download (7).jpg','Food Production — Bakery &amp; Food Processing Lab')">
+          <img src="images/download (7).jpg" alt="Food Production Lab" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🍰 Food Production</span>
+            <p>Food Processing Lab</p>
+          </div>
+        </div>
+
+        <!-- ===== EMBROIDERY ===== -->
+        <div class="gallery-item" data-cat="embroidery" onclick="openLightbox('images/embroidery.jpg','Embroidery &amp; Needle Work — Handcraft Art')">
+          <img src="images/embroidery.jpg" alt="Embroidery Needle Work" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧶 Embroidery</span>
+            <p>Needle Work &amp; Embroidery</p>
+          </div>
+        </div>
+
+         <div class="gallery-item" data-cat="embroidery" onclick="openLightbox('images/embroidery1.jpg','Embroidery &amp; Needle Work — Handcraft Art')">
+          <img src="images/embroidery1.jpg" alt="Embroidery Needle Work" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧶 Embroidery</span>
+            <p>Needle Work &amp; Embroidery</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="embroidery" onclick="openLightbox(' images/embroidery2.jpg','Embroidery &amp; Needle Work — Handcraft Art')">
+          <img src="images/embroidery2.jpg" alt="Embroidery Needle Work" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧶 Embroidery</span>
+            <p>Needle Work &amp; Embroidery</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="embroidery" onclick="openLightbox(' images/download (9).jpg','Embroidery &amp; Needle Work — Handcraft Art')">
+          <img src="images/download (9).jpg" alt="Embroidery Needle Work" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="gallery-cat-badge">🧶 Embroidery</span>
+            <p>Needle Work &amp; Embroidery</p>
+          </div>
+        </div>
+
+
+      </div><!-- end gallery-grid -->
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" src="" alt="Campus Photo" />
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="section section-alt" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrapper">
+          <div class="about-img-box" style="padding:0; overflow:hidden;">
+            <img src="images/campus3.webp" alt="ITI Campus" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <div class="about-badge">
+            <strong>NCVT</strong>
+            <small>Affiliated</small>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag">About Us</div>
+          <h2>Building Skilled Women for a Better Gujarat</h2>
+          <p>
+            Government Mahila Industrial Training Institute, Surendranagar is a premier
+            women's vocational training institute under the Government of Gujarat. Our
+            institute is dedicated to providing quality skill-based education to women.
+          </p>
+          <p>
+            We offer NCVT-affiliated courses in various trades, helping students gain
+            nationally recognized certificates that open doors to employment and
+            self-employment opportunities across Gujarat and India.
+          </p>
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon">🏛️</div>
+              <div><h4>Government Institute</h4><p>Recognized by Govt. of Gujarat</p></div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">📜</div>
+              <div><h4>NCVT Certificate</h4><p>Nationally recognized diploma</p></div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">👩‍🏫</div>
+              <div><h4>Expert Faculty</h4><p>Experienced instructors</p></div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">🌟</div>
+              <div><h4>Placement Support</h4><p>Career guidance provided</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TRADES PREVIEW ========== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Our Trades</div>
+        <h2>Courses We Offer</h2>
+        <p>Choose from our diverse range of NCVT-affiliated trades designed for women</p>
+      </div>
+      <div class="trades-grid">
+        <div class="trade-card">
+          <span class="trade-icon">💻</span>
+          <h3>COPA</h3>
+          <p>Computer Operator &amp; Programming Assistant. Learn computer fundamentals, MS Office, internet and basic programming.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">24 Seats</span></div>
+        </div>
+        <div class="trade-card">
+          <span class="trade-icon">🧵</span>
+          <h3>Sewing Technology</h3>
+          <p>Master garment stitching, machine operation, pattern making and tailoring for self-employment opportunities.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">20 Seats</span></div>
+        </div>
+        <div class="trade-card">
+          <span class="trade-icon">💇</span>
+          <h3>Hair &amp; Skin Care</h3>
+          <p>Professional beauty training covering hair styling, skincare, makeup and salon management skills.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">16 Seats</span></div>
+        </div>
+        <div class="trade-card">
+          <span class="trade-icon">👗</span>
+          <h3>Dress Making</h3>
+          <p>Learn fashion design, fabric knowledge, cutting techniques and garment construction skills.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">20 Seats</span></div>
+        </div>
+        <div class="trade-card">
+          <span class="trade-icon">🍰</span>
+          <h3>Food Production</h3>
+          <p>Bakery, confectionery and food processing skills for restaurant, catering and home business.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">16 Seats</span></div>
+        </div>
+        <div class="trade-card">
+          <span class="trade-icon">🧶</span>
+          <h3>Embroidery &amp; Needle Work</h3>
+          <p>Traditional and modern embroidery techniques, needle art and handicraft for artisan skills.</p>
+          <div class="trade-meta"><span class="trade-tag">1 Year</span><span class="trade-tag">NCVT</span><span class="trade-tag">20 Seats</span></div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="trades.html" class="btn btn-primary btn-lg">View All 7 Trades &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOTICE BOARD ========== -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Notice Board</div>
+        <h2>Latest Announcements</h2>
+        <p>Stay updated with the latest news and notifications from the institute</p>
+      </div>
+      <div class="notice-board">
+        <div class="notice-header">
+          <span style="font-size:1.4rem;">📋</span>
+          <h3>Important Notices</h3>
+        </div>
+                  <div class="notice-list" id="homeNoticeList">
+            <!-- Notices rendered dynamically by JS below -->
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Contact Us</div>
+        <h2>Get In Touch</h2>
+        <p>Have questions? We're here to help. Reach out to us anytime.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Institute Information</h3>
+          <p>Feel free to visit us or contact us for admission queries, course details, or any other information.</p>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div class="contact-item-text">
+              <h4>Address</h4>
+              <p>Government Mahila ITI, Surendranagar, Gujarat &mdash; 363001</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div class="contact-item-text"><h4>Phone</h4><p>+91 02752-784512</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div class="contact-item-text"><h4>Email</h4><p>mahilaiti.surendranagar@gujarat.gov.in</p></div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">⏰</div>
+            <div class="contact-item-text"><h4>Office Hours</h4><p>Mon &ndash; Sat: 9:00 AM &ndash; 5:00 PM</p></div>
+          </div>
+        </div>
+        <div class="contact-form-box">
+          <h3>Send a Message</h3>
+          <div class="alert alert-error" id="contactAlert"></div>
+          <div class="alert alert-success" id="contactSuccess"></div>
+          <div class="form-row">
+            <div class="form-group"><label>Your Name</label><input type="text" id="cName" placeholder="Enter your name" /></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="cPhone" placeholder="Enter phone number" /></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" id="cEmail" placeholder="Enter email" /></div>
+          <div class="form-group"><label>Subject</label><input type="text" id="cSubject" placeholder="e.g. Admission Query" /></div>
+          <div class="form-group"><label>Message</label><textarea id="cMessage" placeholder="Write your message here..."></textarea></div>
+          <button class="btn btn-primary" style="width:100%;" onclick="sendMessage()">Send Message 📨</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-about">
+        <div class="footer-brand">
+          <div class="footer-logo">ITI</div>
+          <div><h3>Mahila ITI Surendranagar</h3></div>
+        </div>
+        <p>Government Mahila Industrial Training Institute, Surendranagar. Empowering women with vocational skills under Government of Gujarat since decades.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="trades.html">Trades</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Our Trades</h4>
+        <a href="trades.html">COPA</a>
+        <a href="trades.html">Sewing Technology</a>
+        <a href="trades.html">Hair &amp; Skin Care</a>
+        <a href="trades.html">Dress Making</a>
+        <a href="trades.html">Food Production</a>
+      </div>
+      <div class="footer-col">
+        <h4>Student Portal</h4>
+        <a href="login.html">Student Login</a>
+        <a href="signup.html">New Registration</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Government Mahila ITI Surendranagar | Government of Gujarat | All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+  <script>
+    // Dynamic notice dates for home page
+    (function() {
+      const Y = new Date().getFullYear();
+      const P = Y - 1;
+      const N = Y + 1;
+      const notices = [
+        { month:"JUN", year:Y, text:`New Admission Open for ${Y}-${String(N).slice(2)} Batch &mdash; Apply before 30th June ${Y}`, sub:"Admission Notice &bull; All Trades", badge:"nb-new", badgeText:"NEW" },
+        { month:"MAY", year:Y, text:`Annual Theory Examination ${Y} &mdash; Hall Tickets available at office from 1st June`, sub:"Examination Notice &bull; All Students", badge:"nb-exam", badgeText:"EXAM" },
+        { month:"APR", year:Y, text:`Practical Exam for COPA Trade &mdash; Venue: Computer Lab, Block A`, sub:"Practical Exam &bull; COPA Students", badge:"nb-exam", badgeText:"EXAM" },
+        { month:"MAR", year:Y, text:`District Level Skill Competition ${Y} &mdash; Register at office before 15th March`, sub:"Event Notice &bull; All Trades", badge:"nb-event", badgeText:"EVENT" },
+        { month:"FEB", year:Y, text:`Scholarship Applications Open for SC/ST/OBC Students &mdash; Apply at office`, sub:"Scholarship Notice &bull; Eligible Students", badge:"nb-new", badgeText:"NEW" },
+      ];
+      const el = document.getElementById("homeNoticeList");
+      if (el) {
+        el.innerHTML = notices.map(n => `
+          <div class="notice-item">
+            <div class="notice-date">${n.month}<br>${n.year}</div>
+            <div class="notice-text">
+              ${n.text}
+              <span>${n.sub} <span class="notice-badge ${n.badge}">${n.badgeText}</span></span>
+            </div>
+          </div>`).join("");
+      }
+    })();
+  </script>
+
+</body>
+</html>
