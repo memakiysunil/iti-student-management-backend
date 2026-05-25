@@ -48,8 +48,14 @@ exports.login = async (req, res, next) => {
         }
 
         const user = await User.findOne({email});
-        if(!user || !(await user.comparePassword(password))){
-            const error = new Error("Invalid email or password");
+        if(!user){
+            const error = new Error("Invalid email");
+            error.statusCode = 401;
+            return next(error);
+        }
+        const pas = await user.comparePassword(password);
+        if(!pas){
+            const error = new Error("Invalid password");
             error.statusCode = 401;
             return next(error);
         }
