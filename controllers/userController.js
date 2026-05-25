@@ -57,7 +57,7 @@ exports.login = async (req, res, next) => {
         if(!pas){
             const error = new Error("Invalid password");
             error.statusCode = 401;
-            return next(error);
+            return next(error)
         }
 
         const payload = {id:user.id, role:user.role};
@@ -116,20 +116,43 @@ exports.updatePassword = async (req, res, next) => {
         next(err);
     }
 };
+ 
+ 
 
 exports.getalluser = async (req, res, next) => {
-    try{
-        const user = await User.find({ role: "student" })
-        .select("fullName email trade enrollmentNo");
-        
-        if(user.length === 0){
-            const error = new Error("User not found");
+    try {
+        const user = await User.aggregate([
+            { $match: { role: "student" } },
+            {
+                $addFields: {
+                    tradeOrder: {
+                        $switch: {
+                            branches: [
+                                { case: { $eq: ["$trade", "COPA"] },                     then: 1 },
+                                { case: { $eq: ["$trade", "Sewing Technology"] },        then: 2 },
+                                { case: { $eq: ["$trade", "Hair & Skin Care"] },         then: 3 },
+                                { case: { $eq: ["$trade", "Dress Making"] },             then: 4 },
+                                { case: { $eq: ["$trade", "Embroidery & Needle Work"] }, then: 5 },
+                                { case: { $eq: ["$trade", "Stenography"] },              then: 6 },
+                                { case: { $eq: ["$trade", "Food Production"] },          then: 7 },
+                            ],
+                            default: 99
+                        }
+                    }
+                }
+            },
+            { $sort: { tradeOrder: 1 } },
+            { $project: { fullName: 1, email: 1, trade: 1, enrollmentNo: 1 } }
+        ]);
+
+        if (user.length === 0) {
+            const error = new Error("No students found");
             error.statusCode = 404;
             return next(error);
         }
-        res.status(200).json({success: true, count: user.length, user});
-    }
-    catch(err){
+
+        res.status(200).json({ success: true, count: user.length, user });
+    } catch (err) {
         next(err);
     }
 };
