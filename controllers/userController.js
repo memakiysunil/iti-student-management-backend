@@ -27,7 +27,7 @@ exports.register = async (req, res, next) => {
         }
 
         const newuser = await new User(data).save();
-        const payload = {id:newuser.id};
+        const payload = {id:newuser.id, role:newuser.role};
         const token = generateToken(payload);
         
         res.status(201).json({success:true, newuser, token});
@@ -54,7 +54,7 @@ exports.login = async (req, res, next) => {
             return next(error);
         }
 
-        const payload = {id:user.id};
+        const payload = {id:user.id, role:user.role};
         const token = generateToken(payload);
 
         res.status(200).json({success: true, token});
@@ -66,7 +66,12 @@ exports.login = async (req, res, next) => {
 
 exports.getprofile = async (req, res, next) => {
     try{
-        const user = await User.findById(req.user.id);
+
+        const selectFields = req.user.role === "admin" 
+            ? "fullName email role" 
+            : "fullName email trade enrollmentNo role";
+
+        const user = await User.findById(req.user.id).select(selectFields);
         if(!user){
             const error = new Error("User not found");
             error.statusCode = 404;
@@ -108,7 +113,7 @@ exports.updatePassword = async (req, res, next) => {
 
 exports.getalluser = async (req, res, next) => {
     try{
-        const user = await User.find()
+        const user = await User.find({ role: "student" })
         .select("fullName email trade enrollmentNo");
         
         if(user.length === 0){
