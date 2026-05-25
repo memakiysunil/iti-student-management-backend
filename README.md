@@ -27,10 +27,12 @@ A RESTful backend API built with **Node.js**, **Express**, and **MongoDB** for m
 - Admin & Student role system
 - JWT-based Authentication (Bearer Token)
 - Password hashing with bcrypt
-- Get own profile (protected)
+- Get own profile (protected) — **role-based fields returned**
 - Update password (protected)
-- Admin can view all students
+- Admin can view all students — **sorted by trade order**
 - Centralized error handling
+- **Separate error messages for invalid email and invalid password on login**
+- **Only one admin allowed in the system**
 
 ---
 
@@ -106,9 +108,11 @@ authMiddleware.js   → (skipped — login is a public route)
 userController.js   → login()
                        1. Read email & password from req.body
                        2. Find user in DB using User.findOne()
-                       3. Compare password using user.comparePassword()
-                       4. Generate JWT token
-                       5. Send token in response
+                       3. If user not found → "Invalid email" (401)
+                       4. Compare password using user.comparePassword()
+                       5. If wrong password → "Invalid password" (401)
+                       6. Generate JWT token with { id, role } payload
+                       7. Send token in response
       │
       ▼
 User.js (Model)     → User.findOne({email}) hits MongoDB
@@ -236,6 +240,9 @@ POST /user/register
 }
 ```
 
+> ℹ️ `enrollmentNo` is **optional**. If not provided, it is simply skipped — no error.
+> If provided, it must be **unique** across all users.
+
 **Available Trades:**
 - `COPA`
 - `Sewing Technology`
@@ -252,6 +259,13 @@ POST /user/register
   "newuser": { "..." },
   "token": "eyJhbGciOiJIUzI1NiIsInR..."
 }
+```
+
+**Error Responses:**
+```json
+{ "success": false, "message": "Email is already registered" }
+{ "success": false, "message": "enrollment number already exists" }
+{ "success": false, "message": "Admin user already exists" }
 ```
 
 ---
@@ -275,6 +289,14 @@ POST /user/login
 }
 ```
 
+**Error Responses:**
+```json
+{ "success": false, "message": "Invalid email" }
+{ "success": false, "message": "Invalid password" }
+```
+
+> ℹ️ Email and password have **separate error messages** — frontend can highlight the exact wrong field.
+
 ---
 
 #### 3. Get My Profile 🔒
@@ -285,7 +307,10 @@ GET /user/getprofile
 ```
 Authorization: Bearer <your_token>
 ```
-**Success Response (200):**
+
+**Response fields differ by role:**
+
+**Student response (200):**
 ```json
 {
   "success": true,
@@ -293,10 +318,25 @@ Authorization: Bearer <your_token>
     "fullName": "Rina Patel",
     "email": "rina@example.com",
     "trade": "COPA",
+    "enrollmentNo": "ITI2024001",
     "role": "student"
   }
 }
 ```
+
+**Admin response (200):**
+```json
+{
+  "success": true,
+  "user": {
+    "fullName": "Mahila ITI Surendranagar",
+    "email": "admin@example.com",
+    "role": "admin"
+  }
+}
+```
+
+> ℹ️ Admin profile does **not** include `trade`, `enrollmentNo` — these fields are student-specific.
 
 ---
 
@@ -349,16 +389,24 @@ Authorization: Bearer <admin_token>
 }
 ```
 
+> ℹ️ Students are returned **sorted by trade order** as defined in the schema:
+> COPA → Sewing Technology → Hair & Skin Care → Dress Making → Embroidery & Needle Work → Stenography → Food Production
+>
+> Admin account is **excluded** from this list — only students are returned.
+
 ---
 
 ## 🔑 Authentication Flow
 
 ```
 Client → POST /user/login → Server verifies email + password
-       → Generates JWT Token (valid 100 hours)
+       → If email wrong   → "Invalid email" (401)
+       → If password wrong → "Invalid password" (401)
+       → Generates JWT Token with payload { id, role } (valid 100 hours)
        → Client stores token
        → Client sends token in every protected request header
-       → authMiddleware verifies token → allows or rejects
+       → authMiddleware verifies token → req.user = { id, role }
+       → Controller uses req.user.role for role-based logic
 ```
 
 **How to send the token in requests:**
@@ -418,7 +466,10 @@ All errors go through the global `errorMiddleware`. Every error response follows
 
 - Passwords are **never stored in plain text** — bcrypt hashes them before saving (salt rounds: 10).
 - JWT tokens expire in **100 hours** — after that the user must login again.
+- JWT payload includes **both `id` and `role`** — `{ id: user.id, role: user.role }` — so middleware can do role-based checks without an extra DB query.
 - `enrollmentNo` is **optional but unique** — uses `sparse: true` in Mongoose schema so multiple users can skip it without conflict.
+- `getprofile` returns **different fields** based on role — admin gets `fullName, email, role` only; student gets `fullName, email, trade, enrollmentNo, role`.
+- `getalluser` uses **MongoDB aggregation pipeline** to sort students by trade order (not simple `find()`).
 - CORS is enabled globally — any frontend origin can call this API.
 
 ---
