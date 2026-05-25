@@ -21,7 +21,7 @@ exports.register = async (req, res, next) => {
 
         const enrollExists = await User.findOne({enrollmentNo:req.body.enrollmentNo});
         if(enrollExists){
-            const error = new Error("nrollment number already exists");
+            const error = new Error("enrollment number already exists");
             error.statusCode =400;
             return next(error);
         }
